@@ -1,7 +1,18 @@
 <%- include('partials/header.ejs')%>
 <body>
     <%- include('partials/navbar.ejs')%>
-  
+
+    <div class="container">
+        <form>
+            <h1>Realizar pergunta</h1>
+            <hr>
+            <label>Titulo</label><br>
+            <input type="text" class="form-control" placeholder="Digite o título aqui"><br>
+            <label>Descrição</label>
+            <textarea name="descricao" class="form-control" placeholder="Digite a descrição aqui"></textarea><br>
+            <button class="btn btn-primary">Perguntar</button>
+        </form>
+    </div>
 </body>
 <%- include('partials/footer.ejs')%>
 
