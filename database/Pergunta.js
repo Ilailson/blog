@@ -4,7 +4,7 @@ const connection = require('./database')
 
 const pergunta  = connection.define
 (
-    'Pergunta',{ 
+    'perguntas',{ 
         titulo: 
         {
             type: Sequelize.STRING,

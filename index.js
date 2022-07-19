@@ -1,6 +1,20 @@
 const express = require('express')
 const app = express()
 
+const connection = require('./database/database')
+const Pergunta = require('./database/pergunta')
+
+//sicronizando a criação com o banco.
+connection
+    .authenticate()
+    .then(() =>{
+        console.log("Conexão realizada com sucesso")
+    }
+    ).catch((msgError) => {
+        console.log("Erro ao conectar")
+        console.error(msgError)
+    })
+
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
