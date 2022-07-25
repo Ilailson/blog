@@ -3,7 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 
 const connection = require('./database/database')
-const Pergunta = require('./database/pergunta')
+const pergunta = require('./database/pergunta')
 
 //sicronizando a criação com o banco.
 connection
@@ -35,11 +35,20 @@ app.get("/pergunta", (req, res) =>
     }
 )
 
-app.get("/", (req, res) =>
-    {
-        res.render("index")
-    }
-)
+//exibir todas as perguntas no formulário pergunta
+app.get("/", (req, res) =>{
+    pergunta.findAll({
+        raw: true, order: 
+        [
+            ['id','desc']
+        ]
+    })
+    .then(perguntas =>{
+        res.render("index", {
+            perguntas: perguntas
+        })
+    })
+})
 
 app.post
 ("/salvarpergunta", (req, res) =>
@@ -47,7 +56,7 @@ app.post
     var titulo = req.body.titulo
     var descricao = req.body.descricao
 
-    Pergunta.create({
+    pergunta.create({
         titulo: titulo,
         descricao: descricao
       })
