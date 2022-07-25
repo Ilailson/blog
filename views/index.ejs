@@ -10,18 +10,19 @@
         <br>
         <br>
 
-        AQUI VAI TER UM LAÇO COM TODAS AS Perguntas
         <br>
-        <div class="card">
-            <div class="card-header">
-                
-            </div>
+        <% perguntas.forEach(pergunta => { %>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h3><%= pergunta.titulo  %></h3>
+                </div>
 
-            <div class="card-footer">
-                <a href="/pergunta" class="btn btn-primary">Responder</a>
+                <div class="card-footer">
+                    <a href="/pergunta/<%= pergunta.id %>"><button class="btn btn-primary">Responder</button></a>
+                </div>
             </div>
-        </div>
-
+        <% }) %> 
     </div>
 </body>
 <%- include('partials/footer.ejs')%>
