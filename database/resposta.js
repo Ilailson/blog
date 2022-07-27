@@ -14,7 +14,7 @@ const resposta = connection.define('respostas', {
 
 //sicronizar com banco
 //force não vai forçar a criação caso a tabela já exista
-Resposta.sync({force: false}).then(() => {
+resposta.sync({force: false}).then(() => {
     console.log("Tabela criada")
 }).catch((err) => {
     console.log("Não foi possível criar a tabela")
