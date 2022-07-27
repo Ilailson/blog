@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 
 const connection = require('./database/database')
 const pergunta = require('./database/pergunta')
+const resposta = require('./database/resposta')
 
 //sicronizando a criação com o banco.
 connection
@@ -66,6 +67,29 @@ app.post
       }
       )
 })
+
+//=======================Rotas respostas =====================
+
+app.get("/pergunta/:id", (req, res) => {
+    var id = req.params.id
+    pergunta.findOne({where: {id: id}})
+    .then(pergunta => {
+        if (pergunta != undefined) {
+            res.render("pergunta", {
+                pergunta: pergunta
+            })
+            
+        } else {
+            res.redirect("/")
+        }
+       
+    })
+
+}
+
+
+)
+
 
 
 app.listen
