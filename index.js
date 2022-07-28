@@ -75,8 +75,23 @@ app.get("/pergunta/:id", (req, res) => {
     pergunta.findOne({where: {id: id}})
     .then(pergunta => {
         if (pergunta != undefined) {
-            res.render("pergunta", {
-                pergunta: pergunta
+            //exibir respostas - antes - renderizar
+            /*Passando - views
+            pergunta: pergunta,
+            respostas: respostas
+            */
+            resposta.findAll(
+                {where: 
+                    {perguntaId: pergunta.id}, 
+                order: 
+                [
+                    ['id', 'DESC']
+                ]})
+            .then(resposta => {
+                res.render("pergunta", {
+                    pergunta: pergunta,
+                    resposta: resposta
+                })
             })
             
         } else {
